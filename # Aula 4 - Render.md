@@ -207,14 +207,12 @@ Depois substitua o conteúdo do `tsconfig.json` por:
 
 ```json
 {
-    "compilerOptions": {
-        "target": "ES2020",
-        "module": "CommonJS",
-        "moduleResolution": "node",
-        "rootDir": "./src",
-        "outDir": "./dist",
-        "strict": true,
-        "esModuleInterop": true,
+  // Visit https://aka.ms/tsconfig to read more about this file
+  "compilerOptions": {
+    "module": "nodenext",
+    "target": "esnext",
+    "strict": true,
+     "esModuleInterop": true,
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
         "skipLibCheck": true
@@ -370,7 +368,9 @@ Conteúdo:
 import "reflect-metadata";
 import { DataSource } from "typeorm";
 import { User } from "../entities/User";
-import "dotenv/config";
+import * as dotenv from 'dotenv'
+
+dotenv.config()
 
 export const AppDataSource = new DataSource({
     type: "mysql",
@@ -464,55 +464,13 @@ export class User {
     @PrimaryGeneratedColumn()
     id!: number;
 
-    @Column()
+    @Column('varchar')
     name!: string;
 
-    @Column({
-        unique: true
+    @Column('varchar',{unique: true
     })
     email!: string;
 }
-```
-
-Essa classe representa a tabela:
-
-```text
-users
-```
-
-Teremos:
-
-```text
-id
-name
-email
-```
-
----
-
-# 15. Entity e tabela
-
-Podemos pensar assim:
-
-```text
-CLASSE TYPESCRIPT
-
-User
-```
-
-vira:
-
-```text
-TABELA MYSQL
-
-users
-```
-
-E:
-
-```ts
-@Column()
-name!: string;
 ```
 
 representa uma coluna.
@@ -1052,7 +1010,9 @@ Conteúdo:
 
 ```ts
 import "reflect-metadata";
-import "dotenv/config";
+import * as dotenv from 'dotenv'
+
+dotenv.config()
 
 import app from "./app";
 
