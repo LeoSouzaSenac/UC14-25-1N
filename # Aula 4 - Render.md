@@ -209,6 +209,8 @@ Depois substitua o conteúdo do `tsconfig.json` por:
 {
   // Visit https://aka.ms/tsconfig to read more about this file
   "compilerOptions": {
+    "rootDir": "./src",
+    "outDir": "./dist",
     "module": "nodenext",
     "target": "esnext",
     "strict": true,
